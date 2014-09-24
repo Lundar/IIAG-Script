@@ -122,16 +122,46 @@ class Dereference : public PredefFunc{
         virtual void execute(list<Object*> &stack, map<string,Object*> &context);
 };
 
+class New : public PredefFunc{
+    public:
+        virtual void execute(list<Object*> &stack, map<string,Object*> &context);
+};
+
+class Greater : public PredefFunc{
+    public:
+        virtual void execute(list<Object*> &stack, map<string,Object*> &context);
+};
+
+class Less : public PredefFunc{
+    public:
+        virtual void execute(list<Object*> &stack, map<string,Object*> &context);
+};
+
+class EGreater : public PredefFunc{
+    public:
+        virtual void execute(list<Object*> &stack, map<string,Object*> &context);
+};
+
+class ELess : public PredefFunc{
+    public:
+        virtual void execute(list<Object*> &stack, map<string,Object*> &context);
+};
+
+class Equal : public PredefFunc{
+    public:
+        virtual void execute(list<Object*> &stack, map<string,Object*> &context);
+};
+
+class NEqual : public PredefFunc{
+    public:
+        virtual void execute(list<Object*> &stack, map<string,Object*> &context);
+};
+
 class ClassKey : public PredefFunc{
     public:
         ClassKey(Arbiter* a):arb(a){}
         virtual void execute(list<Object*> &stack, map<string,Object*> &context);
         Arbiter* arb;
-};
-
-class New : public PredefFunc{
-    public:
-        virtual void execute(list<Object*> &stack, map<string,Object*> &context);
 };
 
 class If : public PredefFunc{

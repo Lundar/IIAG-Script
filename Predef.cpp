@@ -421,6 +421,167 @@ bool b = true;
 return b;
 }
 
+void Less::execute(list<Object*> &stack, map<string,Object*> &context){
+if(stack.size()< 2){
+cerr<<"not enough args!"<<endl;
+return;
+}
+Object * n1 = stack.back();
+stack.pop_back();
+Object * n2 = stack.back();
+stack.pop_back();
+
+    float f1=0,f2=0;
+    if(n1->getType() == INT)
+        f1=((Int*)n1)->getValue();
+    else if (n1->getType() == FLOAT)
+        f1=((Float*)n1)->getValue();
+    if(n2->getType() == INT)
+        f2=((Int*)n2)->getValue();
+    else if (n2->getType() == FLOAT)
+        f2=((Float*)n2)->getValue();
+
+    stack.push_back(new Int(f2<f1));
+
+
+n1->decCount();
+n2->decCount();
+}
+
+void ELess::execute(list<Object*> &stack, map<string,Object*> &context){
+if(stack.size()< 2){
+cerr<<"not enough args!"<<endl;
+return;
+}
+Object * n1 = stack.back();
+stack.pop_back();
+Object * n2 = stack.back();
+stack.pop_back();
+
+    float f1=0,f2=0;
+    if(n1->getType() == INT)
+        f1=((Int*)n1)->getValue();
+    else if (n1->getType() == FLOAT)
+        f1=((Float*)n1)->getValue();
+    if(n2->getType() == INT)
+        f2=((Int*)n2)->getValue();
+    else if (n2->getType() == FLOAT)
+        f2=((Float*)n2)->getValue();
+
+    stack.push_back(new Int(f2<=f1));
+
+
+n1->decCount();
+n2->decCount();
+}
+
+void Greater::execute(list<Object*> &stack, map<string,Object*> &context){
+if(stack.size()< 2){
+cerr<<"not enough args!"<<endl;
+return;
+}
+Object * n1 = stack.back();
+stack.pop_back();
+Object * n2 = stack.back();
+stack.pop_back();
+
+    float f1=0,f2=0;
+    if(n1->getType() == INT)
+        f1=((Int*)n1)->getValue();
+    else if (n1->getType() == FLOAT)
+        f1=((Float*)n1)->getValue();
+    if(n2->getType() == INT)
+        f2=((Int*)n2)->getValue();
+    else if (n2->getType() == FLOAT)
+        f2=((Float*)n2)->getValue();
+
+    stack.push_back(new Int(f2>f1));
+
+
+n1->decCount();
+n2->decCount();
+}
+
+void EGreater::execute(list<Object*> &stack, map<string,Object*> &context){
+if(stack.size()< 2){
+cerr<<"not enough args!"<<endl;
+return;
+}
+Object * n1 = stack.back();
+stack.pop_back();
+Object * n2 = stack.back();
+stack.pop_back();
+
+    float f1=0,f2=0;
+    if(n1->getType() == INT)
+        f1=((Int*)n1)->getValue();
+    else if (n1->getType() == FLOAT)
+        f1=((Float*)n1)->getValue();
+    if(n2->getType() == INT)
+        f2=((Int*)n2)->getValue();
+    else if (n2->getType() == FLOAT)
+        f2=((Float*)n2)->getValue();
+
+    stack.push_back(new Int(f2>=f1));
+
+
+n1->decCount();
+n2->decCount();
+}
+
+void Equal::execute(list<Object*> &stack, map<string,Object*> &context){
+if(stack.size()< 2){
+cerr<<"not enough args!"<<endl;
+return;
+}
+Object * n1 = stack.back();
+stack.pop_back();
+Object * n2 = stack.back();
+stack.pop_back();
+
+    float f1=0,f2=0;
+    if(n1->getType() == INT)
+        f1=((Int*)n1)->getValue();
+    else if (n1->getType() == FLOAT)
+        f1=((Float*)n1)->getValue();
+    if(n2->getType() == INT)
+        f2=((Int*)n2)->getValue();
+    else if (n2->getType() == FLOAT)
+        f2=((Float*)n2)->getValue();
+
+    stack.push_back(new Int(f2==f1));
+
+
+n1->decCount();
+n2->decCount();
+}
+
+void NEqual::execute(list<Object*> &stack, map<string,Object*> &context){
+if(stack.size()< 2){
+cerr<<"not enough args!"<<endl;
+return;
+}
+Object * n1 = stack.back();
+stack.pop_back();
+Object * n2 = stack.back();
+stack.pop_back();
+
+    float f1=0,f2=0;
+    if(n1->getType() == INT)
+        f1=((Int*)n1)->getValue();
+    else if (n1->getType() == FLOAT)
+        f1=((Float*)n1)->getValue();
+    if(n2->getType() == INT)
+        f2=((Int*)n2)->getValue();
+    else if (n2->getType() == FLOAT)
+        f2=((Float*)n2)->getValue();
+
+    stack.push_back(new Int(f2!=f1));
+
+
+n1->decCount();
+n2->decCount();
+}
 
 void If::execute(list<Object*> &stack, map<string,Object*> &context){
 if(stack.size()< 2){
