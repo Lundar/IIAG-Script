@@ -28,7 +28,12 @@ Arbiter::Arbiter() {
     predef["continue"]= new Continue();
     predef["true"]= new True();
     predef["false"]= new False();
-
+    predef[">"]= new Greater();
+    predef["<"]= new Less();
+    predef[">="]= new EGreater();
+    predef["<="]= new ELess();
+    predef["=="]= new Equal();
+    predef["!="]= new NEqual();
 
 }
 
