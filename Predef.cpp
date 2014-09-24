@@ -94,7 +94,7 @@ code->decCount();
 
 void ClassKey::execute(list<Object*> &stack, map<string,Object*> &context){
 
-if(stack.size()< 3){
+if(stack.size()< 2){
 cerr<<"not enough args!"<<endl;
 return;
 }
@@ -200,13 +200,31 @@ cerr<<"not enough args!"<<endl;
 return;
 }
 
-Object* obj;
+Object* o;
 
-obj = stack.back();
+o = stack.back();
 stack.pop_back();
 
+Object* n;
+n = &theNix;
 
-stack.push_back(o);
+if(o->getType()== INT)
+    n=new Int(((Int*)o)->getValue());
+else if(o->getType()== FLOAT)
+    n=new Float(((Float*)o)->getValue());
+else if(o->getType()== NIX)
+    n=&theNix;
+else if(o->getType()== STRING)
+    n=new String(((String*)o)->getString());
+else if(o->getType()== LIST)
+    n=new List(*((List*)o));
+else if(o->getType()== CLASS)
+    n=new Class(*((Class*)o));
+else
+    cerr<<"Cannot make new type "<<o->getType()<<endl;
+
+
+stack.push_back(n);
 }
 
 void Return::execute(list<Object*> &stack, map<string,Object*> &context){

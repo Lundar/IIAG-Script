@@ -120,7 +120,7 @@ if(isdigit(s[0]) || s[0]=='.' || (s[0]=='-' && (isdigit(s[1]) || s[1]=='.'))){
     return new Float(atof(s.c_str()));
 }
 
-if(s[0]==';'){
+if(s[0]=='('){
 deref=true;
 s=s.substr(1);
 }

@@ -1,16 +1,16 @@
 {
 { "hello world!\n" print } { 1 } if
-;greet : go =
+(greet : go =
 go
-5 ;cats =
+5 (cats =
 go
 test2
 test
 } [ ] main func
 
 {
-4 ;num1 =
-5 ;num1 =
+4 (num1 =
+5 (num1 =
 5 num2 =
 [ "4 + 5" "=" num1 ++ num2 + cats * "\n" ] print 
 } [ ] greet func
@@ -23,7 +23,7 @@ num 1 + return
 
 {
 cats print
-{ cats 1 - ;cats = greet } { cats } while
+{ cats 1 - (cats = greet } { cats } while
 } [ ] test func
 
 {
@@ -33,8 +33,8 @@ student.noob print
 student.beep print
 } [ ] test2 func
 
-[ ]
+
 {
-"bob" ;this.name =
-"cob\n" ;this.beep =
+"bob" (this.name =
+"cob\n" (this.beep =
 } student class
