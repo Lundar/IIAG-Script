@@ -30,7 +30,7 @@ List* l=(List*)o;
 
 void Print::execute(list<Object*> &stack, map<string,Object*> &context){
 if(stack.size()< 1){
-cerr<<"not enough args!"<<endl;
+cerr<<"not enough args for print!"<<endl;
 return;
 }
 Object * str = stack.back();
@@ -64,7 +64,7 @@ void EndList::execute(list<Object*> &stack, map<string,Object*> &context){
 void Func::execute(list<Object*> &stack, map<string,Object*> &context){
 
 if(stack.size()< 3){
-cerr<<"not enough args!"<<endl;
+cerr<<"not enough args! for func"<<endl;
 return;
 }
 
@@ -95,7 +95,7 @@ code->decCount();
 void ClassKey::execute(list<Object*> &stack, map<string,Object*> &context){
 
 if(stack.size()< 2){
-cerr<<"not enough args!"<<endl;
+cerr<<"not enough args! for class"<<endl;
 return;
 }
 
@@ -146,7 +146,7 @@ code->decCount();
 
 void Assign::execute(list<Object*> &stack, map<string,Object*> &context){
 if(stack.size()< 2){
-cerr<<"not enough args!"<<endl;
+cerr<<"not enough args! for assignment"<<endl;
 return;
 }
 
@@ -174,7 +174,7 @@ return;
 
 void Dereference::execute(list<Object*> &stack, map<string,Object*> &context){
 if(stack.size()< 1){
-cerr<<"not enough args!"<<endl;
+cerr<<"not enough args! for deref"<<endl;
 return;
 }
 
@@ -196,7 +196,7 @@ stack.push_back(o);
 
 void New::execute(list<Object*> &stack, map<string,Object*> &context){
 if(stack.size()< 1){
-cerr<<"not enough args!"<<endl;
+cerr<<"not enough args! for new"<<endl;
 return;
 }
 
@@ -229,7 +229,7 @@ stack.push_back(n);
 
 void Return::execute(list<Object*> &stack, map<string,Object*> &context){
 if(stack.size()< 1){
-cerr<<"not enough args!"<<endl;
+cerr<<"not enough args! for return"<<endl;
 return;
 }
 
@@ -268,7 +268,7 @@ stack.push_back(new Int(0));
 
 void Add::execute(list<Object*> &stack, map<string,Object*> &context){
 if(stack.size()< 2){
-cerr<<"not enough args!"<<endl;
+cerr<<"not enough args! for add"<<endl;
 return;
 }
 Object * n1 = stack.back();
@@ -299,7 +299,7 @@ n2->decCount();
 
 void Sub::execute(list<Object*> &stack, map<string,Object*> &context){
 if(stack.size()< 2){
-cerr<<"not enough args!"<<endl;
+cerr<<"not enough args! for sub"<<endl;
 return;
 }
 Object * n1 = stack.back();
@@ -330,7 +330,7 @@ n2->decCount();
 
 void Mul::execute(list<Object*> &stack, map<string,Object*> &context){
 if(stack.size()< 2){
-cerr<<"not enough args!"<<endl;
+cerr<<"not enough args! for mul"<<endl;
 return;
 }
 Object * n1 = stack.back();
@@ -361,7 +361,7 @@ n2->decCount();
 
 void Div::execute(list<Object*> &stack, map<string,Object*> &context){
 if(stack.size()< 2){
-cerr<<"not enough args!"<<endl;
+cerr<<"not enough args! for div"<<endl;
 return;
 }
 Object * n1 = stack.back();
@@ -392,7 +392,7 @@ n2->decCount();
 
 void Rem::execute(list<Object*> &stack, map<string,Object*> &context){
 if(stack.size()< 2){
-cerr<<"not enough args!"<<endl;
+cerr<<"not enough args! for %"<<endl;
 return;
 }
 Object * n1 = stack.back();
@@ -421,10 +421,171 @@ bool b = true;
 return b;
 }
 
+void Less::execute(list<Object*> &stack, map<string,Object*> &context){
+if(stack.size()< 2){
+cerr<<"not enough args! for less"<<endl;
+return;
+}
+Object * n1 = stack.back();
+stack.pop_back();
+Object * n2 = stack.back();
+stack.pop_back();
+
+    float f1=0,f2=0;
+    if(n1->getType() == INT)
+        f1=((Int*)n1)->getValue();
+    else if (n1->getType() == FLOAT)
+        f1=((Float*)n1)->getValue();
+    if(n2->getType() == INT)
+        f2=((Int*)n2)->getValue();
+    else if (n2->getType() == FLOAT)
+        f2=((Float*)n2)->getValue();
+
+    stack.push_back(new Int(f2<f1));
+
+
+n1->decCount();
+n2->decCount();
+}
+
+void ELess::execute(list<Object*> &stack, map<string,Object*> &context){
+if(stack.size()< 2){
+cerr<<"not enough args! for <="<<endl;
+return;
+}
+Object * n1 = stack.back();
+stack.pop_back();
+Object * n2 = stack.back();
+stack.pop_back();
+
+    float f1=0,f2=0;
+    if(n1->getType() == INT)
+        f1=((Int*)n1)->getValue();
+    else if (n1->getType() == FLOAT)
+        f1=((Float*)n1)->getValue();
+    if(n2->getType() == INT)
+        f2=((Int*)n2)->getValue();
+    else if (n2->getType() == FLOAT)
+        f2=((Float*)n2)->getValue();
+
+    stack.push_back(new Int(f2<=f1));
+
+
+n1->decCount();
+n2->decCount();
+}
+
+void Greater::execute(list<Object*> &stack, map<string,Object*> &context){
+if(stack.size()< 2){
+cerr<<"not enough args! for >"<<endl;
+return;
+}
+Object * n1 = stack.back();
+stack.pop_back();
+Object * n2 = stack.back();
+stack.pop_back();
+
+    float f1=0,f2=0;
+    if(n1->getType() == INT)
+        f1=((Int*)n1)->getValue();
+    else if (n1->getType() == FLOAT)
+        f1=((Float*)n1)->getValue();
+    if(n2->getType() == INT)
+        f2=((Int*)n2)->getValue();
+    else if (n2->getType() == FLOAT)
+        f2=((Float*)n2)->getValue();
+
+    stack.push_back(new Int(f2>f1));
+
+
+n1->decCount();
+n2->decCount();
+}
+
+void EGreater::execute(list<Object*> &stack, map<string,Object*> &context){
+if(stack.size()< 2){
+cerr<<"not enough args! for >="<<endl;
+return;
+}
+Object * n1 = stack.back();
+stack.pop_back();
+Object * n2 = stack.back();
+stack.pop_back();
+
+    float f1=0,f2=0;
+    if(n1->getType() == INT)
+        f1=((Int*)n1)->getValue();
+    else if (n1->getType() == FLOAT)
+        f1=((Float*)n1)->getValue();
+    if(n2->getType() == INT)
+        f2=((Int*)n2)->getValue();
+    else if (n2->getType() == FLOAT)
+        f2=((Float*)n2)->getValue();
+
+    stack.push_back(new Int(f2>=f1));
+
+
+n1->decCount();
+n2->decCount();
+}
+
+void Equal::execute(list<Object*> &stack, map<string,Object*> &context){
+if(stack.size()< 2){
+cerr<<"not enough args! for =="<<endl;
+return;
+}
+Object * n1 = stack.back();
+stack.pop_back();
+Object * n2 = stack.back();
+stack.pop_back();
+
+    float f1=0,f2=0;
+    if(n1->getType() == INT)
+        f1=((Int*)n1)->getValue();
+    else if (n1->getType() == FLOAT)
+        f1=((Float*)n1)->getValue();
+    if(n2->getType() == INT)
+        f2=((Int*)n2)->getValue();
+    else if (n2->getType() == FLOAT)
+        f2=((Float*)n2)->getValue();
+
+    stack.push_back(new Int(f2==f1));
+
+
+n1->decCount();
+n2->decCount();
+}
+
+void NEqual::execute(list<Object*> &stack, map<string,Object*> &context){
+if(stack.size()< 2){
+cerr<<"not enough args! for !="<<endl;
+return;
+}
+Object * n1 = stack.back();
+stack.pop_back();
+Object * n2 = stack.back();
+stack.pop_back();
+
+    float f1=0,f2=0;
+    if(n1->getType() == INT)
+        f1=((Int*)n1)->getValue();
+    else if (n1->getType() == FLOAT)
+        f1=((Float*)n1)->getValue();
+    if(n2->getType() == INT)
+        f2=((Int*)n2)->getValue();
+    else if (n2->getType() == FLOAT)
+        f2=((Float*)n2)->getValue();
+
+    stack.push_back(new Int(f2!=f1));
+
+
+n1->decCount();
+n2->decCount();
+}
 
 void If::execute(list<Object*> &stack, map<string,Object*> &context){
 if(stack.size()< 2){
-cerr<<"not enough args!"<<endl;
+cerr<<"not enough args! for if"<<endl;
 return;
 }
 Object * pred = stack.back();
@@ -452,7 +613,7 @@ if(pred->getType() != STRING || code->getType() != STRING){
 
 void Ifell::execute(list<Object*> &stack, map<string,Object*> &context){
 if(stack.size()< 3){
-cerr<<"not enough args!"<<endl;
+cerr<<"not enough args! for ifell"<<endl;
 return;
 }
 Object * pred = stack.back();
@@ -483,7 +644,7 @@ if(pred->getType() != STRING || code->getType() != STRING || code2->getType() !=
 
 void While::execute(list<Object*> &stack, map<string,Object*> &context){
 if(stack.size()< 2){
-cerr<<"not enough args!"<<endl;
+cerr<<"not enough args! for while"<<endl;
 return;
 }
 Object * pred = stack.back();
