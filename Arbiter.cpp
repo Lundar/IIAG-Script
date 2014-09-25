@@ -240,6 +240,7 @@ void Arbiter::executeString(string s,list<Object*> &stack, map<string,Object*> &
         } else if(o->getType()==PREDEF_FUNC){
             ((PredefFunc*)o)->execute(stack,context);
         } else {
+            o->incCount();
             stack.push_back(o);
         }
 
