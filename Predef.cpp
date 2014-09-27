@@ -84,7 +84,8 @@ cerr<<"Argument mismatch exception"<<endl;
 return;
 }
 
-context[((Name*)name)->getName()]=new Function(((String*)code)->getString(),*(List*)li);
+//context[((Name*)name)->getName()]=new Function(((String*)code)->getString(),*(List*)li);
+((Name*)name)->setObj(new Function(((String*)code)->getString(),*(List*)li));
 
 name->decCount();
 li->decCount();
@@ -132,7 +133,9 @@ context["this"]=cl;
 
 arb->executeString(((String*)code)->getString(),stack,context);
 
-context[((Name*)name)->getName()]=cl;
+//context[((Name*)name)->getName()]=cl;
+((Name*)name)->setObj(cl);
+
 context.erase("this");
 
 //for(map<string,Object*>::iterator it = cl->getContext().begin(); it != cl->getContext().end(); it++)

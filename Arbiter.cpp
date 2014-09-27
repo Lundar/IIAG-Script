@@ -77,7 +77,7 @@ void Arbiter::loadFile(string s) {
 void Arbiter::main(){
     if(global.find("main") != global.end()){
         list<Object*> stack;
-        executeFunction((Function*)global["main"],stack);
+        executeFunction((Function*)((Name*)global["main"])->getObj(),stack);
     }else
         cerr<<"no main function found!"<<endl;
 }
@@ -94,7 +94,7 @@ continue;
 
 
 if(!stack.size()){
-    cerr<<"not enough args"<<endl;
+    cerr<<"not enough args for function\n"<<f->getCode()<<endl;
     return;
 }
 context[((Name*)param->at(x))->getName()]=stack.back();
