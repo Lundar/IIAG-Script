@@ -688,3 +688,41 @@ if(pred->getType() != STRING || code->getType() != STRING){
 
 
 }
+
+void Exec::execute(list<Object*> &stack, map<string,Object*> &context){
+if(stack.size()< 1){
+cerr<<"not enough args! for exec"<<endl;
+return;
+}
+
+Object * code = stack.back();
+stack.pop_back();
+
+
+if(code->getType() != STRING){
+    cerr<<"Argument mismatch exception in exec"<<endl;
+    return;
+}
+
+        arb->executeString(((String*)code)->getString(),stack,context);
+
+}
+
+void Import::execute(list<Object*> &stack, map<string,Object*> &context){
+if(stack.size()< 1){
+cerr<<"not enough args! for import"<<endl;
+return;
+}
+
+Object * code = stack.back();
+stack.pop_back();
+
+
+if(code->getType() != STRING){
+    cerr<<"Argument mismatch exception in inport"<<endl;
+    return;
+}
+
+        arb->loadFile(((String*)code)->getString());
+
+}

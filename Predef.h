@@ -184,4 +184,18 @@ class While : public PredefFunc{
         virtual void execute(list<Object*> &stack, map<string,Object*> &context);
         Arbiter* arb;
 };
+
+class Exec : public PredefFunc{
+    public:
+        Exec(Arbiter* a):arb(a){}
+        virtual void execute(list<Object*> &stack, map<string,Object*> &context);
+        Arbiter* arb;
+};
+
+class Import : public PredefFunc{
+    public:
+        Import(Arbiter* a):arb(a){}
+        virtual void execute(list<Object*> &stack, map<string,Object*> &context);
+        Arbiter* arb;
+};
 #endif // PREDEF_H

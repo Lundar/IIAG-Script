@@ -30,6 +30,7 @@ class Arbiter
     friend class Ifell;
     friend class While;
     friend class ClassKey;
+    friend class Exec;
 };
 
 #endif // ARBITER_H
